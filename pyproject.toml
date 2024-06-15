@@ -12,6 +12,7 @@ requests = "^2.32.3"
 beautifulsoup4 = "^4.12.3"
 selenium = "^4.21.0"
 pandas = "^2.2.2"
+envs = "^1.4"
 
 
 [build-system]

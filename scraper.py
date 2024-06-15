@@ -1,10 +1,12 @@
+import smtplib
+#import pandas as pd
+import json
+from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
+
 from selenium import webdriver
-
 from selenium.webdriver.chrome.options import Options
-
 from selenium.webdriver.common.by import By
-
-import pandas as pd
 
 YOUTUBE_TRENDING_URL = 'https://www.youtube.com/feed/trending'
 
@@ -46,6 +48,31 @@ def parse_video(video):
   }
 
 
+def send_email(body):
+  MY_EMAIL = 'banniv2024@gmail.com'
+  MY_PASSWORD = 'uvkg yphh fjfn tflz'
+
+  # Create the email
+  msg = MIMEMultipart()
+  msg['From'] = MY_EMAIL
+  msg['To'] = MY_EMAIL
+  msg['Subject'] = 'MAIL SENT FROM THE REPLIT'
+
+  # Attach the email body
+  body = body
+  msg.attach(MIMEText(body, 'plain'))
+
+  try:
+    with smtplib.SMTP_SSL('smtp.gmail.com', 465) as connection:
+      connection.login(user=MY_EMAIL, password=MY_PASSWORD)
+      connection.sendmail(from_addr=MY_EMAIL,
+                          to_addrs=MY_EMAIL,
+                          msg=msg.as_string())
+    print("Mail was successfully sent")
+  except Exception as e:
+    print(f'Error: {e}')
+
+
 if __name__ == "__main__":
   print('Creating a driver')
   driver = get_driver()
@@ -58,7 +85,10 @@ if __name__ == "__main__":
   print('Parsing the top 10 video')
   videos_data = [parse_video(video) for video in videos[:10]]
 
-  print('Save the data to a CSV')
-  videos_df = pd.DataFrame(videos_data)
-  print(videos_df)
-  videos_df.to_csv('trending.csv', index=None)
+  #print('Save the data to a CSV')
+  #videos_df = pd.DataFrame(videos_data)
+  #print(videos_df)
+  #videos_df.to_csv('trending.csv', index=None)
+  print('Sending the email')
+  body = json.dumps(videos_data, indent=2)
+  send_email(body)

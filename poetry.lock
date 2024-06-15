@@ -215,6 +215,20 @@ files = [
 ]
 
 [[package]]
+name = "envs"
+version = "1.4"
+description = "Easy access of environment variables from Python with support for strings, booleans, list, tuples, and dicts."
+optional = false
+python-versions = ">=3.6,<4.0"
+files = [
+    {file = "envs-1.4-py3-none-any.whl", hash = "sha256:4a1fcf85e4d4443e77c348ff7cdd3bfc4c0178b181d447057de342e4172e5ed1"},
+    {file = "envs-1.4.tar.gz", hash = "sha256:9d8435c6985d1cdd68299e04c58e2bdb8ae6cf66b2596a8079e6f9a93f2a0398"},
+]
+
+[package.extras]
+cli = ["Jinja2[cli] (>=3.0.3,<4.0.0)", "click[cli] (>=8.0.3,<9.0.0)", "terminaltables[cli] (>=3.1.10,<4.0.0)"]
+
+[[package]]
 name = "h11"
 version = "0.14.0"
 description = "A pure-Python, bring-your-own-I/O implementation of HTTP/1.1"
@@ -588,4 +602,4 @@ h11 = ">=0.9.0,<1"
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.12"
-content-hash = "a46f7dae38d67c7b0c77d477bab33cd629be09bdea54c2e58792096720175b96"
+content-hash = "c9c21837deeed28fcf95e65365618c89f318186bca21e0711a3100550faf6c66"
